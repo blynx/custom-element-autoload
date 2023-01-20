@@ -1,4 +1,4 @@
-export default class RedSquare extends HTMLElement {
+class XRedSquare extends HTMLElement {
     constructor() {
         super()
         let shadow = this.attachShadow({ mode: "open" })
@@ -19,3 +19,5 @@ export default class RedSquare extends HTMLElement {
         alert("Red Square Constructor!")
     }
 }
+
+customElements.define("x-red-square", XRedSquare)

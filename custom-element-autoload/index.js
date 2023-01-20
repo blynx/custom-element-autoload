@@ -20,6 +20,18 @@ function findAndLoadCustomElementsIn(node) {
 async function loadCustomElement(tagName) {
     if (!customElements.get(tagName)) {
         const { default: Element } = await import(`/elements/${tagName}.js`)
+
+        try {
+            var script = document.createElement('script')
+            script.addEventListener("load", (event) => {
+                console.log(event)
+            })
+            script.src = `/elements/self-defining.js`
+            document.head.appendChild(script)
+        } catch (e) {
+            console.error("Async Script fetching error: ", e)
+        }
+
         customElements.define(tagName, Element)
     }
 }
